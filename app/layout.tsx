@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     template: '%s | Zenon',
   },
   description: 'Understanding Zenon Network of Momentum - A new paradigm for decentralized systems',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/favicon-32x32.png',
+  },
 }
 
 export default function RootLayout({

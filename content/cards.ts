@@ -9,6 +9,7 @@ export interface CardData {
   icon: string
   videoEmbed?: string
   bgColor?: string
+  isQuoteCard?: boolean
 }
 
 export const cards: CardData[] = [
@@ -211,6 +212,19 @@ export const cards: CardData[] = [
     repoPath: 'README.md',
     gitbookPath: '',
     icon: '◈',
+  },
+
+  // Card 13: Satoshi Quote
+  {
+    id: 'satoshi-nakamoto',
+    title: '"Don\'t trust, verify."',
+    subtitle: '— Satoshi Nakamoto',
+    description: '',
+    keyPoints: [],
+    repoPath: '',
+    gitbookPath: '',
+    icon: '◈',
+    isQuoteCard: true,
   },
 ]
 

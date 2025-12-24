@@ -1,4 +1,4 @@
-const { createCanvas } = require('canvas')
+const { createCanvas, loadImage } = require('canvas')
 const fs = require('fs')
 const path = require('path')
 
@@ -16,6 +16,7 @@ const cards = [
   { id: 'cross-chain', title: 'Connect Without Trusting', subtitle: 'Cross-Chain Verification' },
   { id: 'architecture', title: 'How It All Fits Together', subtitle: 'Sentries → Sentinels → Pillars' },
   { id: 'vision', title: 'The Network of Momentum', subtitle: 'A New Foundation' },
+  { id: 'satoshi-nakamoto', title: '"Don\'t trust, verify."', subtitle: '— Satoshi Nakamoto', isQuote: true },
 ]
 
 const WIDTH = 1200
@@ -29,7 +30,7 @@ const COLORS = {
   muted: '#8b949e',
 }
 
-function generateOGImage(card) {
+async function generateOGImage(card, logoImage) {
   const canvas = createCanvas(WIDTH, HEIGHT)
   const ctx = canvas.getContext('2d')
 
@@ -58,67 +59,87 @@ function generateOGImage(card) {
   ctx.fillRect(WIDTH - 40 - cornerSize, HEIGHT - 44, cornerSize, 4)
   ctx.fillRect(WIDTH - 44, HEIGHT - 40 - cornerSize, 4, cornerSize)
 
-  // Zenon logo/symbol
-  ctx.fillStyle = COLORS.green
-  ctx.font = 'bold 48px Arial'
-  ctx.textAlign = 'left'
-  ctx.fillText('◈', 80, 120)
+  // Draw Zenon logo (SVG)
+  const logoSize = 48
+  ctx.drawImage(logoImage, 80, 80, logoSize, logoSize)
 
-  // "ZENON" text
+  // "ZENON" text next to logo
   ctx.fillStyle = COLORS.green
   ctx.font = 'bold 24px Arial'
+  ctx.textAlign = 'left'
   ctx.fillText('ZENON', 140, 115)
 
-  // Subtitle (above title)
-  ctx.fillStyle = COLORS.green
-  ctx.font = '500 28px Arial'
-  ctx.textAlign = 'center'
-  ctx.fillText(card.subtitle.toUpperCase(), WIDTH / 2, 280)
+  if (card.isQuote) {
+    // Quote card - centered, italicized
+    ctx.fillStyle = COLORS.text
+    ctx.font = 'italic bold 56px Arial'
+    ctx.textAlign = 'center'
+    ctx.fillText(card.title, WIDTH / 2, 320)
 
-  // Title
-  ctx.fillStyle = COLORS.text
-  ctx.font = 'bold 64px Arial'
+    ctx.fillStyle = COLORS.green
+    ctx.font = '500 32px Arial'
+    ctx.fillText(card.subtitle, WIDTH / 2, 400)
+  } else {
+    // Standard card
+    // Subtitle (above title)
+    ctx.fillStyle = COLORS.green
+    ctx.font = '500 28px Arial'
+    ctx.textAlign = 'center'
+    ctx.fillText(card.subtitle.toUpperCase(), WIDTH / 2, 280)
 
-  // Word wrap for long titles
-  const words = card.title.split(' ')
-  let lines = []
-  let currentLine = words[0]
+    // Title
+    ctx.fillStyle = COLORS.text
+    ctx.font = 'bold 64px Arial'
 
-  for (let i = 1; i < words.length; i++) {
-    const testLine = currentLine + ' ' + words[i]
-    const metrics = ctx.measureText(testLine)
-    if (metrics.width < WIDTH - 160) {
-      currentLine = testLine
-    } else {
-      lines.push(currentLine)
-      currentLine = words[i]
+    // Word wrap for long titles
+    const words = card.title.split(' ')
+    let lines = []
+    let currentLine = words[0]
+
+    for (let i = 1; i < words.length; i++) {
+      const testLine = currentLine + ' ' + words[i]
+      const metrics = ctx.measureText(testLine)
+      if (metrics.width < WIDTH - 160) {
+        currentLine = testLine
+      } else {
+        lines.push(currentLine)
+        currentLine = words[i]
+      }
     }
-  }
-  lines.push(currentLine)
+    lines.push(currentLine)
 
-  // Draw title lines
-  const lineHeight = 80
-  const startY = 370 - ((lines.length - 1) * lineHeight) / 2
-  lines.forEach((line, index) => {
-    ctx.fillText(line, WIDTH / 2, startY + index * lineHeight)
-  })
+    // Draw title lines
+    const lineHeight = 80
+    const startY = 370 - ((lines.length - 1) * lineHeight) / 2
+    lines.forEach((line, index) => {
+      ctx.fillText(line, WIDTH / 2, startY + index * lineHeight)
+    })
+  }
 
   // URL at bottom
   ctx.fillStyle = COLORS.muted
   ctx.font = '24px Arial'
+  ctx.textAlign = 'center'
   ctx.fillText('zenon.wtf', WIDTH / 2, HEIGHT - 80)
 
   return canvas.toBuffer('image/png')
 }
 
-// Generate all images
-const outputDir = path.join(__dirname, '../public/og')
+async function main() {
+  const outputDir = path.join(__dirname, '../public/og')
+  const svgPath = path.join(__dirname, '../public/znn_token.svg')
 
-cards.forEach(card => {
-  const buffer = generateOGImage(card)
-  const filePath = path.join(outputDir, `${card.id}.png`)
-  fs.writeFileSync(filePath, buffer)
-  console.log(`Generated: ${card.id}.png`)
-})
+  // Load the SVG logo
+  const logoImage = await loadImage(svgPath)
 
-console.log('\nAll OG images generated successfully!')
+  for (const card of cards) {
+    const buffer = await generateOGImage(card, logoImage)
+    const filePath = path.join(outputDir, `${card.id}.png`)
+    fs.writeFileSync(filePath, buffer)
+    console.log(`Generated: ${card.id}.png`)
+  }
+
+  console.log('\nAll OG images generated successfully!')
+}
+
+main().catch(console.error)

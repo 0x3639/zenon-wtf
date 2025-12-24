@@ -46,6 +46,32 @@ export default function Card({ card, index }: CardProps) {
     ? `${GITBOOK_BASE_URL}/${card.gitbookPath}`
     : GITBOOK_BASE_URL
 
+  // Quote card (centered text only)
+  if (card.isQuoteCard) {
+    return (
+      <section
+        ref={cardRef}
+        id={card.id}
+        className="snap-section flex items-center justify-center px-6 md:px-16 lg:px-24"
+        style={{ backgroundColor: card.bgColor || 'transparent' }}
+      >
+        <div
+          className={`
+            max-w-3xl w-full text-center transition-all duration-700
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+          `}
+        >
+          <h2 className="text-2xl md:text-5xl font-bold text-zenon-text mb-4 md:mb-6 italic">
+            {card.title}
+          </h2>
+          <p className="text-zenon-green text-lg md:text-2xl font-medium">
+            {card.subtitle}
+          </p>
+        </div>
+      </section>
+    )
+  }
+
   // Video-only card (first page)
   if (card.videoEmbed) {
     return (
