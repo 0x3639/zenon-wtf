@@ -9,7 +9,11 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Zenon Developer Commons',
+  metadataBase: new URL('https://zenon.wtf'),
+  title: {
+    default: 'Zenon Network | Network of Momentum',
+    template: '%s | Zenon',
+  },
   description: 'Understanding Zenon Network of Momentum - A new paradigm for decentralized systems',
 }
 
