@@ -90,7 +90,7 @@ export default function Card({ card, index }: CardProps) {
     <section
       ref={cardRef}
       id={card.id}
-      className="snap-section flex items-center justify-center px-6 md:px-16 lg:px-24"
+      className="snap-section flex items-center justify-center px-4 md:px-16 lg:px-24 py-16 md:py-8"
       style={{ backgroundColor: card.bgColor || 'transparent' }}
     >
       <div
@@ -100,8 +100,8 @@ export default function Card({ card, index }: CardProps) {
         `}
         style={{ transitionDelay: '100ms' }}
       >
-        {/* Card Number */}
-        <div className="mb-6">
+        {/* Card Number - hidden on mobile */}
+        <div className="mb-2 md:mb-6 hidden md:block">
           <span className="text-zenon-green text-5xl font-light opacity-30">
             {String(index + 1).padStart(2, '0')}
           </span>
@@ -109,36 +109,36 @@ export default function Card({ card, index }: CardProps) {
 
         {/* Content Card */}
         <div
-          className="bg-zenon-bg-card backdrop-blur-sm border border-zenon-green/20 rounded-2xl p-8 md:p-12 shadow-lg"
+          className="bg-zenon-bg-card backdrop-blur-sm border border-zenon-green/20 rounded-xl md:rounded-2xl p-5 md:p-12 shadow-lg"
           style={{
             boxShadow: '0 0 40px rgba(127, 255, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.4)',
           }}
         >
           {/* Subtitle */}
-          <p className="text-zenon-green text-sm font-medium tracking-wider uppercase mb-2">
+          <p className="text-zenon-green text-xs md:text-sm font-medium tracking-wider uppercase mb-1 md:mb-2">
             {card.subtitle}
           </p>
 
           {/* Title */}
-          <h2 className="text-3xl md:text-4xl font-bold text-zenon-text mb-6">
+          <h2 className="text-xl md:text-4xl font-bold text-zenon-text mb-3 md:mb-6">
             {card.title}
           </h2>
 
           {/* Description */}
-          <p className="text-zenon-text-muted text-lg leading-relaxed mb-8">
+          <p className="text-zenon-text-muted text-sm md:text-lg leading-relaxed mb-4 md:mb-8">
             {card.description}
           </p>
 
           {/* Key Points */}
           {card.keyPoints.length > 0 && (
-            <ul className="space-y-3 mb-10">
+            <ul className="space-y-2 md:space-y-3 mb-5 md:mb-10">
               {card.keyPoints.map((point, i) => (
                 <li
                   key={i}
-                  className="flex items-start gap-3 text-zenon-text/90"
+                  className="flex items-start gap-2 md:gap-3 text-zenon-text/90 text-sm md:text-base"
                   style={{ transitionDelay: `${200 + i * 100}ms` }}
                 >
-                  <span className="text-zenon-green mt-1.5">▸</span>
+                  <span className="text-zenon-green mt-0.5 md:mt-1.5 text-xs md:text-base">▸</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -146,19 +146,19 @@ export default function Card({ card, index }: CardProps) {
           )}
 
           {/* Links */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2 md:gap-4">
             <a
               href={gitbookUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="
-                inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-                bg-zenon-green text-zenon-bg font-medium
+                inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 md:py-2.5 rounded-lg
+                bg-zenon-green text-zenon-bg font-medium text-sm md:text-base
                 hover:bg-zenon-green-dark transition-colors duration-200
               "
             >
               <span>Read Docs</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>
@@ -167,13 +167,13 @@ export default function Card({ card, index }: CardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="
-                inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-                border border-zenon-text-muted/30 text-zenon-text
+                inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 md:py-2.5 rounded-lg
+                border border-zenon-text-muted/30 text-zenon-text text-sm md:text-base
                 hover:border-zenon-green/50 hover:text-zenon-green transition-colors duration-200
               "
             >
               <span>View Source</span>
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
             </a>

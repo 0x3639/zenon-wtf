@@ -134,40 +134,40 @@ export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
       </div>
 
       {/* Share button - bottom left */}
-      <div className="fixed bottom-6 left-6 z-50">
+      <div className="fixed bottom-3 left-3 md:bottom-6 md:left-6 z-50">
         <button
           onClick={handleShare}
-          className="flex items-center gap-2 text-zenon-text-muted hover:text-zenon-green transition-colors duration-200"
+          className="flex items-center gap-1.5 md:gap-2 text-zenon-text-muted hover:text-zenon-green transition-colors duration-200"
           title={copied ? 'Link copied!' : 'Share this card'}
         >
           {copied ? (
             <>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-sm">Copied!</span>
+              <span className="text-xs md:text-sm">Copied!</span>
             </>
           ) : (
             <>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
-              <span className="text-sm">Share</span>
+              <span className="text-xs md:text-sm">Share</span>
             </>
           )}
         </button>
       </div>
 
       {/* Zenon branding footer */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-3 right-3 md:bottom-6 md:right-6 z-50">
         <a
           href="https://zenon.network"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-zenon-text-muted hover:text-zenon-green transition-colors duration-200"
+          className="flex items-center gap-1.5 md:gap-2 text-zenon-text-muted hover:text-zenon-green transition-colors duration-200"
         >
-          <span className="text-sm">Powered by</span>
-          <span className="text-zenon-green font-bold">ZENON</span>
+          <span className="text-xs md:text-sm hidden sm:inline">Powered by</span>
+          <span className="text-zenon-green font-bold text-xs md:text-sm">ZENON</span>
         </a>
       </div>
     </main>
