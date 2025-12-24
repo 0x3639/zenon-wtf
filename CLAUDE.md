@@ -4,7 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Related Repositories
 
-The sibling folder `../zenon-developer-commons/` contains Zenon documentation and research. It is **reference material only** - do not modify it. Card content links to docs in that repo via GitHub URLs.
+The local folder `./zenon-developer-commons/` contains Zenon documentation and research (gitignored). It is **reference material only** - do not modify it. Card content links to docs in that repo via GitHub URLs.
+
+## Deployment
+
+Hosted on Cloudflare Workers. Configuration in `wrangler.toml`.
+
+```bash
+npm run build              # Build static export to ./out
+npx wrangler deploy        # Deploy to Cloudflare Workers
+```
 
 ## Commands
 
