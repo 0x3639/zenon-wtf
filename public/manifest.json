@@ -1,0 +1,21 @@
+{
+  "name": "Zenon Network",
+  "short_name": "Zenon",
+  "description": "Understanding Zenon Network of Momentum - A new paradigm for decentralized systems",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#7fff00",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
