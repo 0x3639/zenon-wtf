@@ -161,10 +161,10 @@ export default function Card({ card, index }: CardProps) {
               {card.keyPoints.map((point, i) => (
                 <li
                   key={i}
-                  className="flex items-start gap-2 md:gap-3 text-zenon-text/90 text-sm md:text-base"
+                  className="flex items-center gap-2 md:gap-3 text-zenon-text/90 text-sm md:text-base"
                   style={{ transitionDelay: `${200 + i * 100}ms` }}
                 >
-                  <span className="text-zenon-green mt-0.5 md:mt-1.5 text-xs md:text-base">▸</span>
+                  <span className="text-zenon-green text-xs md:text-base">▸</span>
                   <span>{point}</span>
                 </li>
               ))}

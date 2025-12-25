@@ -33,7 +33,7 @@ export const cards: CardData[] = [
     title: 'The Blockchain Bottleneck',
     subtitle: 'Why Every Chain Is Slow',
     description:
-      'On Ethereum, 10,000 computers run the same code for every transaction. That\'s like asking every employee in a company to do the same task. Wasteful, slow, and expensive.',
+      'On traditional blockchains computers run the same code for every transaction. That\'s like asking every employee in a company to do the same task. Wasteful, slow, and expensive.',
     keyPoints: [
       'Every validator re-executes every transaction',
       'You pay fees because validators charge for their work',
@@ -71,7 +71,7 @@ export const cards: CardData[] = [
     keyPoints: [
       'Account-chains: Your personal ledger',
       'Momentums: The global timestamp',
-      'True parallelism—no traffic jams',
+      'True Parallelism: No traffic jams',
     ],
     repoPath: 'docs/architecture/architecture-overview.md',
     gitbookPath: 'architecture/architecture-overview',
@@ -152,7 +152,7 @@ export const cards: CardData[] = [
     title: 'Execute Locally, Anchor Globally',
     subtitle: 'zApps & Client-Side Logic',
     description:
-      'Run complex applications on your own device. When you\'re done, submit a cryptographic commitment to your account-chain. The network never runs your code—it just stamps your work.',
+      'Run complex applications on your own device. When you\'re done, submit a cryptographic commitment to your account-chain. The network never runs your code, it just stamps your work.',
     keyPoints: [
       'Apps run in your browser',
       'Submit results, not code',
@@ -169,7 +169,7 @@ export const cards: CardData[] = [
     title: 'Connect Without Trusting',
     subtitle: 'Cross-Chain Verification',
     description:
-      'Want to verify a Bitcoin transaction? Zenon can check it directly—no bridge operators, no wrapped tokens, no trust assumptions. Pure cryptography.',
+      'Want to verify a Bitcoin transaction? Zenon can check it directly: no bridge operators, no wrapped tokens, no trust assumptions. Pure cryptography.',
     keyPoints: [
       'Verify Bitcoin transactions natively',
       'No bridge operators to trust',
@@ -207,7 +207,7 @@ export const cards: CardData[] = [
     keyPoints: [
       'Sovereign users',
       'No central points of failure',
-      'Built for the next decade',
+      'Built for the next century',
     ],
     repoPath: 'README.md',
     gitbookPath: '',
