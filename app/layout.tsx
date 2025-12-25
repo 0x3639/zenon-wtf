@@ -82,6 +82,8 @@ export default function RootLayout({
                   api_host: 'https://us.i.posthog.com',
                   defaults: '2025-11-30',
                   person_profiles: 'identified_only',
+                  capture_pageview: true,
+                  capture_pageleave: true,
               })
             `,
           }}
