@@ -10,6 +10,7 @@
   --accent-green: #7fff00;
   --accent-green-dark: #6be600;
   --green-glow: rgba(127, 255, 0, 0.15);
+  --card-shadow: 0 0 40px rgba(127, 255, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -52,22 +53,6 @@ body {
 
 .snap-container::-webkit-scrollbar {
   display: none; /* Chrome/Safari/Opera */
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 /* Glow effect for accent elements */

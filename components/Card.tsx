@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo, memo } from 'react'
 import { CardData, REPO_BASE_URL, GITBOOK_BASE_URL } from '@/content/cards'
 
 interface CardProps {
@@ -8,9 +8,8 @@ interface CardProps {
   index: number
 }
 
-export default function Card({ card, index }: CardProps) {
+function Card({ card, index }: CardProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const [isInView, setIsInView] = useState(true)
   const cardRef = useRef<HTMLDivElement>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -21,7 +20,6 @@ export default function Card({ card, index }: CardProps) {
         if (visible) {
           setIsVisible(true)
         }
-        setIsInView(visible)
 
         // Pause video when scrolling away
         if (!visible && card.videoEmbed && iframeRef.current) {
@@ -41,10 +39,11 @@ export default function Card({ card, index }: CardProps) {
     return () => observer.disconnect()
   }, [card.videoEmbed])
 
-  const repoUrl = `${REPO_BASE_URL}/${card.repoPath}`
-  const gitbookUrl = card.gitbookPath
-    ? `${GITBOOK_BASE_URL}/${card.gitbookPath}`
-    : GITBOOK_BASE_URL
+  const repoUrl = useMemo(() => `${REPO_BASE_URL}/${card.repoPath}`, [card.repoPath])
+  const gitbookUrl = useMemo(
+    () => (card.gitbookPath ? `${GITBOOK_BASE_URL}/${card.gitbookPath}` : GITBOOK_BASE_URL),
+    [card.gitbookPath]
+  )
 
   // Quote card (centered text only)
   if (card.isQuoteCard) {
@@ -92,13 +91,12 @@ export default function Card({ card, index }: CardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="block rounded-xl overflow-hidden shadow-lg hover:shadow-zenon-green/20 transition-all duration-300 hover:scale-[1.02]"
-            style={{
-              boxShadow: '0 0 40px rgba(127, 255, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.4)',
-            }}
+            style={{ boxShadow: 'var(--card-shadow)' }}
           >
             <img
               src={card.imageSrc}
               alt={card.title}
+              loading="lazy"
               className="w-auto h-auto max-h-[50vh] md:max-h-[70vh] mx-auto"
             />
           </a>
@@ -171,9 +169,7 @@ export default function Card({ card, index }: CardProps) {
         {/* Content Card */}
         <div
           className="bg-zenon-bg-card backdrop-blur-sm border border-zenon-green/20 rounded-xl md:rounded-2xl p-5 md:p-12 shadow-lg"
-          style={{
-            boxShadow: '0 0 40px rgba(127, 255, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.4)',
-          }}
+          style={{ boxShadow: 'var(--card-shadow)' }}
         >
           {/* Subtitle */}
           <p className="text-zenon-green text-xs md:text-sm font-medium tracking-wider uppercase mb-1 md:mb-2">
@@ -244,3 +240,5 @@ export default function Card({ card, index }: CardProps) {
     </section>
   )
 }
+
+export default memo(Card)

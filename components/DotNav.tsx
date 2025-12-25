@@ -1,31 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { cards } from '@/content/cards'
 
 interface DotNavProps {
   containerRef: React.RefObject<HTMLDivElement | null>
+  activeIndex: number
 }
 
-export default function DotNav({ containerRef }: DotNavProps) {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      const scrollTop = container.scrollTop
-      const sectionHeight = window.innerHeight
-      const newIndex = Math.round(scrollTop / sectionHeight)
-      setActiveIndex(Math.min(newIndex, cards.length - 1))
-    }
-
-    container.addEventListener('scroll', handleScroll)
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [containerRef])
-
-  const scrollToSection = (index: number) => {
+export default function DotNav({ containerRef, activeIndex }: DotNavProps) {
+  const scrollToSection = useCallback((index: number) => {
     const container = containerRef.current
     if (!container) return
 
@@ -33,7 +17,7 @@ export default function DotNav({ containerRef }: DotNavProps) {
       top: index * window.innerHeight,
       behavior: 'smooth',
     })
-  }
+  }, [containerRef])
 
   return (
     <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center">

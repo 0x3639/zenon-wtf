@@ -1,0 +1,25 @@
+# Cache static assets for 1 year (immutable)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 year
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache fonts for 1 year
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# OG images - cache for 1 week (may update)
+/og/*
+  Cache-Control: public, max-age=604800
+
+# HTML pages - short cache with revalidation
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

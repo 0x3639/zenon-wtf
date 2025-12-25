@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState, useCallback } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import DotNav from '@/components/DotNav'
 import Card from '@/components/Card'
 import { cards } from '@/content/cards'
@@ -11,12 +11,15 @@ interface HomePageProps {
 }
 
 export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
-  const router = useRouter()
   const pathname = usePathname()
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(initialCardIndex)
+  const currentIndexRef = useRef(currentIndex)
   const [copied, setCopied] = useState(false)
   const isInitialMount = useRef(true)
+
+  // Keep ref in sync with state
+  currentIndexRef.current = currentIndex
 
   const handleShare = async () => {
     const currentCard = cards[currentIndex]
@@ -55,10 +58,10 @@ export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowDown' || e.key === 'j') {
         e.preventDefault()
-        scrollToSection(currentIndex + 1)
+        scrollToSection(currentIndexRef.current + 1)
       } else if (e.key === 'ArrowUp' || e.key === 'k') {
         e.preventDefault()
-        scrollToSection(currentIndex - 1)
+        scrollToSection(currentIndexRef.current - 1)
       } else if (e.key === 'Home') {
         e.preventDefault()
         scrollToSection(0)
@@ -70,7 +73,7 @@ export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentIndex, scrollToSection])
+  }, [scrollToSection])
 
   // Sync current index with scroll and update URL path
   useEffect(() => {
@@ -114,7 +117,7 @@ export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
   return (
     <main className="relative">
       {/* Left navigation dots */}
-      <DotNav containerRef={containerRef} />
+      <DotNav containerRef={containerRef} activeIndex={currentIndex} />
 
       {/* Scroll container with snap sections */}
       <div ref={containerRef} className="snap-container">
