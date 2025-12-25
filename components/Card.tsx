@@ -72,6 +72,41 @@ export default function Card({ card, index }: CardProps) {
     )
   }
 
+  // Image card (clickable image linking to external URL)
+  if (card.isImageCard && card.imageSrc) {
+    return (
+      <section
+        ref={cardRef}
+        id={card.id}
+        className="snap-section flex items-center justify-center px-4 md:px-16 lg:px-24"
+        style={{ backgroundColor: card.bgColor || 'transparent' }}
+      >
+        <div
+          className={`
+            max-w-2xl w-full transition-all duration-700
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+          `}
+        >
+          <a
+            href={card.imageLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-xl overflow-hidden shadow-lg hover:shadow-zenon-green/20 transition-all duration-300 hover:scale-[1.02]"
+            style={{
+              boxShadow: '0 0 40px rgba(127, 255, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.4)',
+            }}
+          >
+            <img
+              src={card.imageSrc}
+              alt={card.title}
+              className="w-full h-auto"
+            />
+          </a>
+        </div>
+      </section>
+    )
+  }
+
   // Video-only card (first page)
   if (card.videoEmbed) {
     return (

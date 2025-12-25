@@ -10,6 +10,9 @@ export interface CardData {
   videoEmbed?: string
   bgColor?: string
   isQuoteCard?: boolean
+  isImageCard?: boolean
+  imageSrc?: string
+  imageLink?: string
 }
 
 export const cards: CardData[] = [
@@ -225,6 +228,21 @@ export const cards: CardData[] = [
     gitbookPath: '',
     icon: '◈',
     isQuoteCard: true,
+  },
+
+  // Card 14: Crypto Publius Riddle
+  {
+    id: 'crypto-publius',
+    title: 'The Riddle',
+    subtitle: '— @crypto_publius',
+    description: '',
+    keyPoints: [],
+    repoPath: '',
+    gitbookPath: '',
+    icon: '◈',
+    isImageCard: true,
+    imageSrc: '/crypto-publius.jpg',
+    imageLink: 'https://x.com/crypto_publius/status/1452886881373466626',
   },
 ]
 
