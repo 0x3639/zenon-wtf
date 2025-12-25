@@ -99,7 +99,7 @@ export default function Card({ card, index }: CardProps) {
             <img
               src={card.imageSrc}
               alt={card.title}
-              className="w-full h-auto"
+              className="w-auto h-auto max-h-[50vh] md:max-h-[70vh] mx-auto"
             />
           </a>
         </div>
