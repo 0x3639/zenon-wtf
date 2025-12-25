@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import DotNav from '@/components/DotNav'
 import Card from '@/components/Card'
 import { cards } from '@/content/cards'
+import { trackEvent } from '@/lib/analytics'
 
 interface HomePageProps {
   initialCardIndex?: number
@@ -24,6 +25,8 @@ export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
   const handleShare = async () => {
     const currentCard = cards[currentIndex]
     const url = `${window.location.origin}/${currentCard.id}`
+
+    trackEvent('share_clicked', { card_id: currentCard.id, card_title: currentCard.title })
 
     try {
       await navigator.clipboard.writeText(url)
@@ -167,6 +170,7 @@ export default function HomePage({ initialCardIndex = 0 }: HomePageProps) {
           href="https://zenon.network"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent('zenon_link_clicked')}
           className="flex items-center gap-1.5 md:gap-2 text-zenon-text-muted hover:text-zenon-green transition-colors duration-200"
         >
           <span className="text-xs md:text-sm hidden sm:inline">Powered by</span>

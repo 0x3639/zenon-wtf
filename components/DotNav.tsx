@@ -2,6 +2,7 @@
 
 import { useCallback } from 'react'
 import { cards } from '@/content/cards'
+import { trackEvent } from '@/lib/analytics'
 
 interface DotNavProps {
   containerRef: React.RefObject<HTMLDivElement | null>
@@ -37,7 +38,10 @@ export default function DotNav({ containerRef, activeIndex }: DotNavProps) {
         {cards.map((card, index) => (
           <button
             key={card.id}
-            onClick={() => scrollToSection(index)}
+            onClick={() => {
+              trackEvent('nav_dot_clicked', { card_id: card.id, card_title: card.title })
+              scrollToSection(index)
+            }}
             className="group relative flex items-center"
             aria-label={`Navigate to ${card.title}`}
           >
