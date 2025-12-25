@@ -1,7 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState, useMemo, memo } from 'react'
+import { useEffect, useRef, useState, useMemo, memo, useCallback } from 'react'
 import { CardData, REPO_BASE_URL, GITBOOK_BASE_URL } from '@/content/cards'
+
+declare global {
+  interface Window {
+    posthog?: {
+      capture: (event: string, properties?: Record<string, unknown>) => void
+    }
+  }
+}
 
 interface CardProps {
   card: CardData
@@ -44,6 +52,10 @@ function Card({ card, index }: CardProps) {
     () => (card.gitbookPath ? `${GITBOOK_BASE_URL}/${card.gitbookPath}` : GITBOOK_BASE_URL),
     [card.gitbookPath]
   )
+
+  const trackClick = useCallback((event: string) => {
+    window.posthog?.capture(event, { card_id: card.id, card_title: card.title })
+  }, [card.id, card.title])
 
   // Quote card (centered text only)
   if (card.isQuoteCard) {
@@ -90,6 +102,7 @@ function Card({ card, index }: CardProps) {
             href={card.imageLink}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('image_card_clicked')}
             className="block rounded-xl overflow-hidden shadow-lg hover:shadow-zenon-green/20 transition-all duration-300 hover:scale-[1.02]"
             style={{ boxShadow: 'var(--card-shadow)' }}
           >
@@ -208,6 +221,7 @@ function Card({ card, index }: CardProps) {
               href={gitbookUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackClick('docs_clicked')}
               className="
                 inline-flex items-center gap-1 md:gap-2 px-2.5 md:px-5 py-1.5 md:py-2.5 rounded-md md:rounded-lg
                 bg-zenon-green text-zenon-bg font-medium text-xs md:text-base
@@ -223,6 +237,7 @@ function Card({ card, index }: CardProps) {
               href={repoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackClick('source_clicked')}
               className="
                 inline-flex items-center gap-1 md:gap-2 px-2.5 md:px-5 py-1.5 md:py-2.5 rounded-md md:rounded-lg
                 border border-zenon-text-muted/30 text-zenon-text text-xs md:text-base
