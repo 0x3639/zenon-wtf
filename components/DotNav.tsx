@@ -2,14 +2,7 @@
 
 import { useCallback } from 'react'
 import { cards } from '@/content/cards'
-
-declare global {
-  interface Window {
-    posthog?: {
-      capture: (event: string, properties?: Record<string, unknown>) => void
-    }
-  }
-}
+import { trackEvent } from '@/lib/analytics'
 
 interface DotNavProps {
   containerRef: React.RefObject<HTMLDivElement | null>
@@ -46,7 +39,7 @@ export default function DotNav({ containerRef, activeIndex }: DotNavProps) {
           <button
             key={card.id}
             onClick={() => {
-              window.posthog?.capture('nav_dot_clicked', { card_id: card.id, card_title: card.title })
+              trackEvent('nav_dot_clicked', { card_id: card.id, card_title: card.title })
               scrollToSection(index)
             }}
             className="group relative flex items-center"
