@@ -4,6 +4,7 @@ const path = require('path')
 
 // Card data - matches content/cards.ts
 const cards = [
+  { id: 'intro', title: "Don't trust. Verify..._", subtitle: '', isMatrixIntro: true },
   { id: 'welcome', title: 'Welcome to Zenon', subtitle: 'Network of Momentum' },
   { id: 'problem', title: 'The Blockchain Bottleneck', subtitle: 'Why Every Chain Is Slow' },
   { id: 'insight', title: "What If They Didn't Have To?", subtitle: 'A Fundamental Rethinking' },
@@ -33,6 +34,58 @@ const COLORS = {
 async function generateOGImage(card, logoImage) {
   const canvas = createCanvas(WIDTH, HEIGHT)
   const ctx = canvas.getContext('2d')
+
+  // Matrix intro - same frame but with monospace text
+  if (card.isMatrixIntro) {
+    // Dark background (same as other cards)
+    ctx.fillStyle = COLORS.bg
+    ctx.fillRect(0, 0, WIDTH, HEIGHT)
+
+    // Decorative border
+    ctx.strokeStyle = COLORS.green
+    ctx.lineWidth = 4
+    ctx.strokeRect(40, 40, WIDTH - 80, HEIGHT - 80)
+
+    // Corner accents
+    const cornerSize = 30
+    ctx.fillStyle = COLORS.green
+    // Top left
+    ctx.fillRect(40, 40, cornerSize, 4)
+    ctx.fillRect(40, 40, 4, cornerSize)
+    // Top right
+    ctx.fillRect(WIDTH - 40 - cornerSize, 40, cornerSize, 4)
+    ctx.fillRect(WIDTH - 44, 40, 4, cornerSize)
+    // Bottom left
+    ctx.fillRect(40, HEIGHT - 44, cornerSize, 4)
+    ctx.fillRect(40, HEIGHT - 40 - cornerSize, 4, cornerSize)
+    // Bottom right
+    ctx.fillRect(WIDTH - 40 - cornerSize, HEIGHT - 44, cornerSize, 4)
+    ctx.fillRect(WIDTH - 44, HEIGHT - 40 - cornerSize, 4, cornerSize)
+
+    // Draw Zenon logo
+    const logoSize = 48
+    ctx.drawImage(logoImage, 80, 80, logoSize, logoSize)
+
+    // "ZENON" text next to logo
+    ctx.fillStyle = COLORS.green
+    ctx.font = 'bold 24px Arial'
+    ctx.textAlign = 'left'
+    ctx.fillText('ZENON', 140, 115)
+
+    // Centered green text - monospace style
+    ctx.fillStyle = COLORS.green
+    ctx.font = 'bold 56px Courier New, monospace'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText(card.title, WIDTH / 2, HEIGHT / 2)
+
+    // URL at bottom
+    ctx.fillStyle = COLORS.muted
+    ctx.font = '24px Arial'
+    ctx.fillText('zenon.wtf', WIDTH / 2, HEIGHT - 80)
+
+    return canvas.toBuffer('image/png')
+  }
 
   // Background
   ctx.fillStyle = COLORS.bg
