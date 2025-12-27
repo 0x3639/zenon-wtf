@@ -1,0 +1,31 @@
+# Zenon Network - Network of Momentum
+
+> Educational landing site explaining Zenon Network's blockchain architecture featuring feeless transactions, parallel execution, dual-ledger design, and browser-based nodes.
+
+Zenon Network is a Layer 1 blockchain that solves the blockchain bottleneck through a novel dual-ledger architecture where each account is its own blockchain. This enables parallel transaction processing, feeless operations via Dynamic Plasma, and the ability to run full nodes directly in web browsers.
+
+The site is located at https://zenon.wtf
+
+## Pages
+
+- [Intro Video](https://zenon.wtf/intro): Welcome video introducing Zenon Network
+- [The Problem](https://zenon.wtf/problem): Why traditional blockchains are slow - the blockchain bottleneck
+- [The Insight](https://zenon.wtf/insight): A fundamental rethinking - what if validators only verified results?
+- [Dual-Ledger](https://zenon.wtf/dual-ledger): Your account is your blockchain - the dual-ledger architecture
+- [Parallel Processing](https://zenon.wtf/parallel): Everyone moves at once - no sequential bottlenecks
+- [Feeless](https://zenon.wtf/feeless): No fees ever - Dynamic Plasma mechanism
+- [Browser Nodes](https://zenon.wtf/browser): Run a full node in your browser - not a light client
+- [DFA](https://zenon.wtf/dfa): Proof not replay - Deterministic Fact Acceptance
+- [zApps](https://zenon.wtf/zapps): Execute locally, anchor globally - client-side applications
+- [Cross-Chain](https://zenon.wtf/cross-chain): Connect without trusting - Bitcoin SPV verification
+- [Architecture](https://zenon.wtf/architecture): How it all fits together - Sentries, Sentinels, Pillars
+
+## Documentation
+
+- [Zenon Developer Commons](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs): Technical documentation and architecture research
+- [GitHub Repository](https://github.com/TminusZ/zenon-developer-commons): Source documentation and research papers
+
+## Optional
+
+- [Vision](https://zenon.wtf/vision): The Network of Momentum - a new foundation
+- [Satoshi Quote](https://zenon.wtf/satoshi-nakamoto): "Don't trust, verify." inspirational quote

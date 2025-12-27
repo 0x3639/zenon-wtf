@@ -1,0 +1,140 @@
+# Zenon Network - Network of Momentum
+
+> Educational landing site explaining Zenon Network's blockchain architecture featuring feeless transactions, parallel execution, dual-ledger design, and browser-based nodes.
+
+Zenon Network is a Layer 1 blockchain that solves the blockchain bottleneck through a novel dual-ledger architecture where each account is its own blockchain. This enables parallel transaction processing, feeless operations via Dynamic Plasma, and the ability to run full nodes directly in web browsers.
+
+The site is located at https://zenon.wtf
+
+## The Blockchain Bottleneck
+
+**Why Every Chain Is Slow**
+
+On traditional blockchains computers run the same code for every transaction. That's like asking every employee in a company to do the same task. Wasteful, slow, and expensive.
+
+Key points:
+- Every validator re-executes every transaction
+- You pay fees because validators charge for their work
+- The more users, the slower it gets
+
+## The Insight
+
+**A Fundamental Rethinking**
+
+What if validators only checked that your answer was correct without redoing all the math? That's the insight behind Zenon.
+
+Key points:
+- You do the work on your device
+- The network only verifies the result
+- No redundant computation
+
+## Dual-Ledger Architecture
+
+**Your Account Is Your Blockchain**
+
+In Zenon, every user has their own mini-blockchain in your browser. Your transactions don't compete with anyone else's. It's like having your own lane on the highway.
+
+Key points:
+- Account-chains: Your personal ledger
+- Momentums: The global timestamp
+- True Parallelism: No traffic jams
+
+## Parallel Processing
+
+**Everyone Moves at Once**
+
+Traditional blockchains are like a single checkout lane. Zenon is like a supermarket where everyone has their own self-checkout.
+
+Key points:
+- No competing for block space
+- Your speed doesn't depend on network load
+- Scales naturally with users
+
+## Dynamic Plasma
+
+**No Fees. Ever.**
+
+Gas fees exist because validators charge for their work. Since Zenon validators don't re-execute, there's no work to charge for. Simple.
+
+Key points:
+- No gas auctions
+- No paying $50 for a simple transfer
+- The network adapts to load without fees
+
+## Browser Light Client
+
+**Run a Node in Your Browser - Not a Light Client, A Real Peer**
+
+Other blockchains require you to trust a server. On Zenon, your browser downloads a tiny amount of data and verifies everything itself. No middleman.
+
+Key points:
+- No Infura, no Alchemy, no trust
+- Verify transactions yourself
+- Instant onboarding—no 24-hour sync
+
+## Deterministic Fact Acceptance (DFA)
+
+**Proof, Not Replay**
+
+Most blockchains re-watch the whole movie to check the ending. Zenon just checks the final frame is correctly signed. Same result, fraction of the work.
+
+Key points:
+- Facts are verified cryptographically
+- No virtual machine at consensus
+- Results are provable without re-computation
+
+## zApps
+
+**Execute Locally, Anchor Globally**
+
+Run complex applications on your own device. When you're done, submit a cryptographic commitment to your account-chain. The network never runs your code, it just stamps your work.
+
+Key points:
+- Apps run in your browser
+- Submit results, not code
+- Instant execution, no network wait
+
+## Cross-Chain Verification
+
+**Connect Without Trusting**
+
+Want to verify a Bitcoin transaction? Zenon can check it directly: no bridge operators, no wrapped tokens, no trust assumptions. Pure cryptography.
+
+Key points:
+- Verify Bitcoin transactions natively
+- No bridge operators to trust
+- True interoperability
+
+## Node Architecture
+
+**How It All Fits Together: Sentries → Sentinels → Pillars**
+
+A layered system where execution happens on your device, spam is filtered in the middle, and consensus only handles ordering. Simple, elegant, scalable.
+
+Key points:
+- Sentries: Your device executes
+- Sentinels: Filter and verify
+- Pillars: Finalize the order
+
+## The Vision
+
+**The Network of Momentum - A New Foundation**
+
+Imagine thousands of browser-based peers, running full applications, without fees, servers, or central infrastructure. That's not a dream. That's Zenon.
+
+Key points:
+- Sovereign users
+- No central points of failure
+- Built for the next century
+
+## Documentation
+
+- [Zenon Developer Commons](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs): Technical documentation and architecture research
+- [GitHub Repository](https://github.com/TminusZ/zenon-developer-commons): Source documentation and research papers
+- [Architecture Overview](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/architecture/architecture-overview)
+- [Dynamic Plasma](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes/dynamic-plasma)
+- [Browser Light Client](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/browser-light-client-overview)
+- [Deterministic Fact Acceptance](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/taxonomy-deterministic-fact-acceptance)
+- [Bitcoin SPV Engineering](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/proposals/bitcoin-spv-engineering)
+- [Execution Model](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes/execution-model)
+- [Node Architecture](https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes/node-architecture)
